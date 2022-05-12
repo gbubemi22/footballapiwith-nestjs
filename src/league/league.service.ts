@@ -27,10 +27,10 @@ export class LeagueService {
   }
 
   async findOne(id: string): Promise<League> {
-    const user = await this.LeagueModel.findOne({ id });
-    if (!user) {
+    const leagueId = await this.LeagueModel.findOne({ id });
+    if (!leagueId) {
       throw new HttpException(
-        `User with id ${id} Not found`,
+        `League with id ${leagueId} Not found`,
         HttpStatus.BAD_REQUEST,
       );
     }
@@ -48,9 +48,12 @@ export class LeagueService {
   }
   // DELETE LEAGUE
   async deleteOne(id: string): Promise<League> {
-    const user = await this.LeagueModel.findOne({ id });
-    if (!user) {
-      throw new HttpException('User Not found', HttpStatus.BAD_REQUEST);
+    const leagueId = await this.LeagueModel.findOne({ id });
+    if (!leagueId) {
+      throw new HttpException(
+        `League with id ${leagueId} Not found`,
+        HttpStatus.BAD_REQUEST,
+      );
     }
 
     return await this.LeagueModel.findByIdAndRemove({ _id: id }).exec();

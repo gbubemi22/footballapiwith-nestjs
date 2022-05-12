@@ -6,16 +6,33 @@ import { LeagueModule } from './league/league.module';
 import { TeamModule } from './team/team.module';
 import { PlayerModule } from './player/player.module';
 import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGO_URI),
+    MongooseModule.forRoot(process.env.MONGO_URI, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      bufferMaxEntries: 0,
+      bufferCommands: false,
+    }),
     LeagueModule,
     TeamModule,
     PlayerModule,
     AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
+
+// @Module({
+//   imports: [
+//     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+//   ],
+//   providers: [UsersService, UsersRepository],
+//   controllers: [UsersController],
+// })
+// export class UsersModule {}

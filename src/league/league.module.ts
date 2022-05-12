@@ -7,18 +7,7 @@ import { League, LeagueSchema } from './schema/league.schema';
 
 @Module({
   imports: [
-    MongooseModule.forFeatureAsync([
-      {
-        name: League.name,
-        useFactory: () => {
-          const schema = LeagueSchema;
-          schema.plugin(require('mongoose-paginate-v2'));
-          // eslint-disable-next-line @typescript-eslint/no-var-requires
-          schema.plugin(require('mongoose-slug-generator'));
-          return schema;
-        },
-      },
-    ]),
+    MongooseModule.forFeature([{ name: League.name, schema: LeagueSchema }]),
   ],
   controllers: [LeagueController],
   providers: [LeagueService],
