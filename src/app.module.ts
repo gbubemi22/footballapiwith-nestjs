@@ -10,13 +10,9 @@ import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGO_URI, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      bufferMaxEntries: 0,
-      bufferCommands: false,
-    }),
+    MongooseModule.forRoot(
+      'mongodb+srv://testboy:shadow22@bemiho22.qq4js.mongodb.net/FOOTBALL-NEST_API?retryWrites=true&w=majority',
+    ),
     LeagueModule,
     TeamModule,
     PlayerModule,
@@ -36,3 +32,11 @@ export class AppModule {}
 //   controllers: [UsersController],
 // })
 // export class UsersModule {}
+
+// {
+//   useUnifiedTopology: true,
+//   useNewUrlParser: true,
+//   useCreateIndex: true,
+//   bufferMaxEntries: 0,
+//   bufferCommands: false,
+// },
