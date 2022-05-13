@@ -10,9 +10,7 @@ import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://testboy:shadow22@bemiho22.qq4js.mongodb.net/FOOTBALL-NEST_API?retryWrites=true&w=majority',
-    ),
+    MongooseModule.forRoot(process.env.MONGO_URI),
     LeagueModule,
     TeamModule,
     PlayerModule,
