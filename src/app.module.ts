@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 //import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -11,20 +11,18 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGO_URI, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      bufferMaxEntries: 0,
-      bufferCommands: false
-    }),
+    forwardRef(() =>
+      MongooseModule.forFeatureAsync(
+        'mongodb+srv://testboy:shadow22@bemiho22.qq4js.mongodb.net/FOOTBALL-NEST_API?retryWrites=true&w=majority',
+      ),
+    ),
 
     LeagueModule,
     TeamModule,
     PlayerModule,
     AuthModule,
     UsersModule,
-  ],
+],
   controllers: [AppController],
   providers: [AppService],
 })
