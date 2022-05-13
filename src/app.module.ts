@@ -11,18 +11,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-    forwardRef(() =>
-      MongooseModule.forFeatureAsync(
-        'mongodb+srv://testboy:shadow22@bemiho22.qq4js.mongodb.net/FOOTBALL-NEST_API?retryWrites=true&w=majority',
-      ),
-    ),
-
     LeagueModule,
     TeamModule,
     PlayerModule,
     AuthModule,
     UsersModule,
-],
+    MongooseModule.forRoot(process.env.MONGO_URI),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
