@@ -11,7 +11,7 @@ import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGO_URI),
+    MongooseModule.forRootAsync(process.env.MONGO_URI),
 
     LeagueModule,
     TeamModule,
